@@ -1,0 +1,25 @@
+name: spriggit tag release
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+  release-spriggit:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run Spriggit
+        uses: FlayaN/spriggit-runner-action@fbd43cea737ad3bb6b94f9985fa206691a9017b1
+        with:
+          spriggit_tool_version: "0.5"
+          spriggit_args: deserialize -i ${{ github.workspace }}/src/plugin -o ${{ github.workspace }}/TestMod.esm
+
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: ${{ github.workspace }}/TestMod.esm
