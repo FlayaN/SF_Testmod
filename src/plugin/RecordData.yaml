@@ -14,6 +14,6 @@ ModHeader:
     NumRecords: 0
     NextFormID: 2048
   Author: FlayaN
-  Description: Testmod for starfield
+  Description: Testmod for starfield2
   MasterReferences:
   - Master: Starfield.esm
